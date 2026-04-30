@@ -1,0 +1,43 @@
+services:
+  aster-publicacio:
+    image: captwhite/administracio:latest
+    container_name: administracio
+    restart: always
+    env_file:
+      - ./.env
+
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.publ-http.entrypoints=web"
+      - "traefik.http.routers.publ-http.rule=Host(`publ.captwhite.com`)"
+      - "traefik.http.routers.publ-http.middlewares=redirect-to-https@docker"
+      - "traefik.http.middlewares.redirect-to-https.redirectscheme.scheme=https"
+      #
+      - "traefik.http.routers.publ.entrypoints=websecure"
+      - "traefik.http.routers.publ.rule=Host(`publ.captwhite.com`)"
+      - "traefik.http.routers.publ.tls=true"
+      - "traefik.http.routers.publ.tls.certresolver=myresolver"
+      - "traefik.http.services.publ.loadbalancer.server.port=4321"
+    networks:
+      - webnet-administracio
+
+  db:
+    image: mariadb:latest
+    container_name: administracio-db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${DB_DATABASE}
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASSWORD}  
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+    networks:
+      - webnet-astro
+
+
+networks:
+  webnet-astro:
+    external: true
