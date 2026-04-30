@@ -62,7 +62,7 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           # Asegúrate de que el nombre del fichero coincida con el tuyo
           source: "docker-compose-prod.yml"
-          target: "/home/${{ secrets.SSH_USER }}/workspaces/nextjs-app/"
+          target: "/home/${{ secrets.SSH_USER }}/workspaces/administracio/"
 
       - name: 🚀 Deploy containers and restart service
         uses: appleboy/ssh-action@v1.0.1
@@ -76,10 +76,10 @@ jobs:
 
             echo "Configurando variables de entorno (.env)..."
             # Importante: Next.js suele necesitar variables en build-time o runtime
-            echo "DATABASE_URL=${{ secrets.DATABASE_URL }}" > .env
-            echo "NEXT_PUBLIC_API_URL=${{ secrets.NEXT_PUBLIC_API_URL }}" >> .env
-            echo "PRIVATE_KEY=${{ secrets.APPL_PRIVATE_KEY }}" >> .env
-            echo "CLIENT_EMAIL=${{ secrets.APPL_CLIENT_EMAIL }}" >> .env
+            echo "DB_ROOT_PASSWORD=${{ secrets.DB_ROOT_PASSWORD }}" > .env
+            echo "DB_DATABASE=${{ secrets.DB_DATABASE }}" >> .env
+            echo "DB_USER=${{ secrets.DB_USER }}" >> .env
+            echo "DB_PASSWORD=${{ secrets.DB_PASSWORD }}" >> .env
 
             echo "Actualizando imágenes y reiniciando..."
             docker compose -f docker-compose-prod.yml pull
