@@ -72,7 +72,7 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
             echo "Iniciando despliegue de Next.js..."
-            cd /home/${{ secrets.SSH_USER }}/workspaces/nextjs-app
+            cd /home/${{ secrets.SSH_USER }}/workspaces/administracio
 
             echo "Configurando variables de entorno (.env)..."
             # Importante: Next.js suele necesitar variables en build-time o runtime
