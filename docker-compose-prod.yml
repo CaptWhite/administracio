@@ -35,9 +35,9 @@ services:
     volumes:
       - db_data:/var/lib/mysql
     networks:
-      - webnet-astro
+      - webnet-administracio
 
 
 networks:
-  webnet-astro:
+  webnet-administracio:
     external: true
