@@ -80,7 +80,7 @@ jobs:
             echo "DB_DATABASE=${{ secrets.DB_DATABASE }}" >> .env
             echo "DB_USER=${{ secrets.DB_USER }}" >> .env
             echo "DB_PASSWORD=${{ secrets.DB_PASSWORD }}" >> .env
-            echo "DB_HOST=db >> .env
+            echo "DB_HOST=db" >> .env
 
             echo "Actualizando imágenes y reiniciando..."
             docker compose -f docker-compose-prod.yml pull
