@@ -62,7 +62,7 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           # Asegúrate de que el nombre del fichero coincida con el tuyo
           source: "docker-compose-aster.yml"
-          target: "/opt/workspaces/workspaces/administracio/"
+          target: "/opt/workspaces/administracio/"
 
       - name: 🚀 Deploy containers and restart service
         uses: appleboy/ssh-action@v1.0.1
@@ -72,7 +72,7 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
             echo "Iniciando despliegue de Next.js..."
-            cd /home/${{ secrets.SSH_USER }}/workspaces/administracio
+            cd /opt/workspaces/administracio
 
             echo "Configurando variables de entorno (.env)..."
             # Importante: Next.js suele necesitar variables en build-time o runtime
