@@ -63,7 +63,6 @@ jobs:
           port: 22 # Asegúrate de que el puerto sea el correcto
           source: "docker-compose-aster.yml"
           target: "/opt/workspaces/administracio/"
-          debug: true
 
       - name: 🚀 Deploy containers and restart service
         uses: appleboy/ssh-action@v1.0.1
@@ -82,6 +81,7 @@ jobs:
             echo "DB_USER=${{ secrets.DB_USER }}" >> .env
             echo "DB_PASSWORD=${{ secrets.DB_PASSWORD }}" >> .env
             echo "DB_HOST=db" >> .env
+            echo "APP_BASE_PATH=/administracio" >> .env
 
             echo "Actualizando imágenes y reiniciando..."
             docker compose -f docker-compose-aster.yml pull
