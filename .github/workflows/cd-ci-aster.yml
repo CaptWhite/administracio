@@ -69,7 +69,7 @@ jobs:
         uses: appleboy/ssh-action@v1.0.1
         with:
           host: ${{ secrets.SSH_HOST_ASTER }}
-          username: ${{ secrets.SSH_ASTER }}
+          username: ${{ secrets.SSH_USER_ASTER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
             echo "Iniciando despliegue de Next.js..."
