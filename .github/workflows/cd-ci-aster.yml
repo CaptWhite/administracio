@@ -89,4 +89,5 @@ jobs:
             echo "Limpiando imágenes antiguas..."
             docker image prune -f
             
-            echo "✅ Despliegue completado con éxito."
+            echo "✅ Despliegue completado con éxito." 
+            
