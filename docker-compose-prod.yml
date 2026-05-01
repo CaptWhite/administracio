@@ -26,10 +26,10 @@ services:
     container_name: administracio-db
     restart: always
     environment:
-      DB_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
-      DB_DATABASE: ${DB_DATABASE}
-      DB_USER: ${DB_USER}
-      DB_PASSWORD: ${DB_PASSWORD}  
+      MARIADB_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+      MARIADB_DATABASE: ${DB_DATABASE}
+      MARIADB_USER: ${DB_USER}
+      MARIADB_PASSWORD: ${DB_PASSWORD}  
     ports:
       - "3306:3306"
     volumes:
@@ -39,7 +39,7 @@ services:
 
   phpmyadmin:
     image: phpmyadmin
-    container_name: ${ROUTER}-phpmyadmin
+    container_name: administracio-phpmyadmin
     restart: unless-stopped
     init: true
     depends_on:
