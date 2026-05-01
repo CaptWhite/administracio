@@ -57,8 +57,8 @@ jobs:
       - name: 📤 Sync files to VPS
         uses: appleboy/scp-action@v0.1.4
         with:
-          host: ${{ secrets.SSH_HOST }}
-          username: ${{ secrets.SSH_USER }}
+          host: ${{ secrets.SSH_HOST_ASTER }}
+          username: ${{ secrets.SSH_USER_ASTER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           # Asegúrate de que el nombre del fichero coincida con el tuyo
           source: "docker-compose-aster.yml"
