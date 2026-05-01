@@ -60,7 +60,7 @@ jobs:
           host: ${{ secrets.SSH_HOST_ASTER }}
           username: ${{ secrets.SSH_USER_ASTER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-          # Asegúrate de que el nombre del fichero coincida con el tuyo
+          port: 22 # Asegúrate de que el puerto sea el correcto
           source: "docker-compose-aster.yml"
           target: "/opt/workspaces/administracio/"
           debug: true
