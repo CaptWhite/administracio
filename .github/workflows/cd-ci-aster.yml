@@ -61,8 +61,8 @@ jobs:
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           # Asegúrate de que el nombre del fichero coincida con el tuyo
-          source: "docker-compose-prod.yml"
-          target: "/home/${{ secrets.SSH_USER }}/workspaces/administracio/"
+          source: "docker-compose-aster.yml"
+          target: "/opt/workspaces/workspaces/administracio/"
 
       - name: 🚀 Deploy containers and restart service
         uses: appleboy/ssh-action@v1.0.1
@@ -83,8 +83,8 @@ jobs:
             echo "DB_HOST=db" >> .env
 
             echo "Actualizando imágenes y reiniciando..."
-            docker compose -f docker-compose-prod.yml pull
-            docker compose -f docker-compose-prod.yml up -d --remove-orphans
+            docker compose -f docker-compose-aster.yml pull
+            docker compose -f docker-compose-aster.yml up -d --remove-orphans
             
             echo "Limpiando imágenes antiguas..."
             docker image prune -f
