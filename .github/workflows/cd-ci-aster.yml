@@ -63,6 +63,7 @@ jobs:
           # Asegúrate de que el nombre del fichero coincida con el tuyo
           source: "docker-compose-aster.yml"
           target: "/opt/workspaces/administracio/"
+          debug: true
 
       - name: 🚀 Deploy containers and restart service
         uses: appleboy/ssh-action@v1.0.1
@@ -90,4 +91,4 @@ jobs:
             docker image prune -f
             
             echo "✅ Despliegue completado con éxito." 
-            
+
