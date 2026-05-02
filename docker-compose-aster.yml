@@ -1,4 +1,5 @@
-administracio:
+services:
+  administracio:
     image: captwhite/administracio:latest
     container_name: administracio
     restart: always
