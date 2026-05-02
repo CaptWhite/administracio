@@ -1,17 +1,17 @@
 services:
-  administracio:
-    image: captwhite/administracio:latest
-    container_name: administracio
+  gestio:
+    image: captwhite/gestio:latest
+    container_name: gestio
     restart: always
     env_file:
       - ./.env
     networks:
-      - webnet-administracio
+      - webnet-gestio
       - proxy_network
 
   db:
     image: mariadb:latest
-    container_name: administracio-db
+    container_name: gestio-db
     restart: always
     environment:
       MARIADB_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
@@ -23,11 +23,11 @@ services:
     volumes:
       - ./mariadb:/var/lib/mysql
     networks:
-      - webnet-administracio
+      - webnet-gestio
 
   phpmyadmin:
     image: phpmyadmin
-    container_name: administracio-phpmyadmin
+    container_name: gestio-phpmyadmin
     restart: unless-stopped
     init: true
     depends_on:
@@ -35,16 +35,16 @@ services:
     
     environment:
       PMA_HOST: db
-      PMA_ABSOLUTE_URI: https://intranet.aster.cat/administracio/phpmyadmin/
+      PMA_ABSOLUTE_URI: https://intranet.aster.cat/gestio/phpmyadmin/
       PMA_ARBITRARY: 1
     
     networks:
-      - webnet-administracio
+      - webnet-gestio
       - proxy_network
   
 
 networks:
-  webnet-administracio:
+  webnet-gestio:
     external: true
   proxy_network:  
     external: true

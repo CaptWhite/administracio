@@ -1,7 +1,7 @@
 services:
-  administracio:
-    image: captwhite/administracio:latest
-    container_name: administracio
+  gestio:
+    image: captwhite/gestio:latest
+    container_name: gestio
     restart: always
     env_file:
       - ./.env
@@ -19,11 +19,11 @@ services:
       - "traefik.http.routers.admin.tls.certresolver=myresolver"
       - "traefik.http.services.admin.loadbalancer.server.port=3000"
     networks:
-      - webnet-administracio
+      - webnet-gestio
 
   db:
     image: mariadb:latest
-    container_name: administracio-db
+    container_name: gestio-db
     restart: always
     environment:
       MARIADB_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
@@ -35,17 +35,17 @@ services:
     volumes:
       - ./mariadb:/var/lib/mysql
     networks:
-      - webnet-administracio
+      - webnet-gestio
 
   phpmyadmin:
     image: phpmyadmin
-    container_name: administracio-phpmyadmin
+    container_name: gestio-phpmyadmin
     restart: unless-stopped
     init: true
     depends_on:
       - db
     networks:
-      - webnet-administracio
+      - webnet-gestio
     environment:
       - PMA_ARBITRARY=1
     labels:
@@ -62,5 +62,5 @@ services:
       - "traefik.http.services.admindb.loadbalancer.server.port=80"
 
 networks:
-  webnet-administracio:
+  webnet-gestio:
     external: true

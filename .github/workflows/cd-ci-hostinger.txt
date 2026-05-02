@@ -7,7 +7,7 @@ on:
 
 env:
   DOCKERHUB_USERNAME: captwhite
-  IMAGE_NAME: captwhite/administracio 
+  IMAGE_NAME: captwhite/gestio 
 
 jobs:
   ci_build:
@@ -62,7 +62,7 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           # Asegúrate de que el nombre del fichero coincida con el tuyo
           source: "docker-compose-prod.yml"
-          target: "/home/${{ secrets.SSH_USER }}/workspaces/administracio/"
+          target: "/home/${{ secrets.SSH_USER }}/workspaces/gestio/"
 
       - name: 🚀 Deploy containers and restart service
         uses: appleboy/ssh-action@v1.0.1
@@ -72,7 +72,7 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
             echo "Iniciando despliegue de Next.js..."
-            cd /home/${{ secrets.SSH_USER }}/workspaces/administracio
+            cd /home/${{ secrets.SSH_USER }}/workspaces/gestio
 
             echo "Configurando variables de entorno (.env)..."
             # Importante: Next.js suele necesitar variables en build-time o runtime
