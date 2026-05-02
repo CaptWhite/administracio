@@ -8,6 +8,7 @@ on:
 env:
   DOCKERHUB_USERNAME: captwhite
   IMAGE_NAME: captwhite/administracio 
+  ENV APP_BASE_PATH: /administracio
 
 jobs:
   ci_build:
@@ -81,7 +82,7 @@ jobs:
             echo "DB_USER=${{ secrets.DB_USER }}" >> .env
             echo "DB_PASSWORD=${{ secrets.DB_PASSWORD }}" >> .env
             echo "DB_HOST=db" >> .env
-            echo "APP_BASE_PATH=/administracio" >> .env
+
 
             echo "Actualizando imágenes y reiniciando..."
             docker compose -f docker-compose-aster.yml pull
