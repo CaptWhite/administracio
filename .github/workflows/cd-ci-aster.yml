@@ -44,6 +44,8 @@ jobs:
           tags: |
             ${{ env.IMAGE_NAME }}:latest
             ${{ env.IMAGE_NAME }}:${{ github.sha }}
+          build-args: |
+            APP_BASE_PATH=/administracio
           # Next.js genera muchas capas, el cache gha es vital aquí
           cache-from: type=gha
           cache-to: type=gha,mode=max
